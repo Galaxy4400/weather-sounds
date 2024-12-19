@@ -1,0 +1,107 @@
+.main {
+	font-family: 'Roboto';
+	position: relative;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #0d3360;
+	// .main__content
+	&__content {
+		text-align: center;
+		display: grid;
+		gap: 30px;
+	}
+	// .main__title
+	&__title {
+		position: relative;
+		z-index: 1;
+		font-size: 40px;
+		font-weight: 700;
+		color: #ee7235;
+	}
+	// .main__bg
+	&__bg {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+	}
+	// .main__img
+	&__img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		filter: blur(5px);
+		opacity: 0;
+		visibility: hidden;
+		transition: all 0.3s ease 0s;
+		&.active {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+}
+
+.items {
+	position: relative;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 20px;
+	z-index: 1;
+}
+
+.item {
+	width: 150px;
+	height: 150px;
+	position: relative;
+	border: 1px solid gray;
+	border-radius: 20px;
+	overflow: hidden;
+	cursor: pointer;
+	// .item__icon
+	&__icon {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		translate: -50% -50%;
+		width: 50px;
+		height: 50px;
+		.item.active & {
+			animation: puls 0.7s infinite alternate;
+		}
+	}
+	// .item__bg
+	&__bg {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		scale: 1.001;
+		transition: all 0.5s ease 0s;
+		@media (any-hover: hover) {
+			.item:hover & {
+				scale: 1.1;
+			}
+		}
+	}
+	// .item__audio
+	&__audio {
+		opacity: 0;
+		visibility: hidden;
+	}
+}
+
+@keyframes puls {
+	0% {
+		scale: 1;
+	}
+	100% {
+		scale: 1.2;
+	}
+}
