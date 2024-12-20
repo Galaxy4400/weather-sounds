@@ -50,8 +50,12 @@
 	position: relative;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
+	justify-items: center;
 	gap: 20px;
 	z-index: 1;
+	@media (max-width: 500px) {
+		grid-template-columns: repeat(1, 1fr);
+	}
 }
 
 .item {
