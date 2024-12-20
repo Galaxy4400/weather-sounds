@@ -13,26 +13,35 @@
 		<div class="main__content">
 			<h1 class="main__title">Weather Sounds</h1>
 			<div class="items">
-				<div class="item" data-no="1">
-					<img class="item__bg" src="assets/img/summer-bg.jpg" alt="bg">
-					<img class="item__icon" src="assets/icons/sun.svg" alt="icon">
+				<div class="item">
+					<div class="item__view" data-no="1">
+						<img class="item__bg" src="assets/img/summer-bg.jpg" alt="bg">
+						<img class="item__icon" src="assets/icons/sun.svg" alt="icon">
+					</div>
 					<audio class="item__audio" controls loop>
 						<source src="assets/sounds/summer.mp3" type="audio/mpeg">
 					</audio>
+					<input class="item__range" type="range" min="0" max="100">
 				</div>
-				<div class="item" data-no="2">
-					<img class="item__bg" src="assets/img/rainy-bg.jpg" alt="bg">
-					<img class="item__icon" src="assets/icons/cloud-rain.svg" alt="icon">
+				<div class="item">
+					<div class="item__view" data-no="2">
+						<img class="item__bg" src="assets/img/rainy-bg.jpg" alt="bg">
+						<img class="item__icon" src="assets/icons/cloud-rain.svg" alt="icon">
+					</div>
 					<audio class="item__audio" controls loop>
 						<source src="assets/sounds/rain.mp3" type="audio/mpeg">
 					</audio>
+					<input class="item__range" type="range" min="0" max="100">
 				</div>
-				<div class="item" data-no="3">
-					<img class="item__bg" src="assets/img/winter-bg.jpg" alt="bg">
-					<img class="item__icon" src="assets/icons/cloud-snow.svg" alt="icon">
+				<div class="item">
+					<div class="item__view" data-no="3">
+						<img class="item__bg" src="assets/img/winter-bg.jpg" alt="bg">
+						<img class="item__icon" src="assets/icons/cloud-snow.svg" alt="icon">
+					</div>
 					<audio class="item__audio" controls loop>
 						<source src="assets/sounds/winter.mp3" type="audio/mpeg">
 					</audio>
+					<input class="item__range" type="range" min="0" max="100">
 				</div>
 			</div>
 			<div class="main__bg">
