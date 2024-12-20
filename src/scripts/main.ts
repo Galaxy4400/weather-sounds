@@ -1,12 +1,12 @@
 const processAudio = (item: HTMLElement) => {
 	const audio = item.querySelector('.item__audio') as HTMLAudioElement;
-		
+
 	if (item.classList.contains('active')) {
 		audio.play();
 	} else {
 		audio.pause();
 	}
-}
+};
 
 const disactiveOthers = (currentItem: HTMLElement) => {
 	(document.querySelectorAll('.item') as NodeListOf<HTMLElement>).forEach((item) => {
