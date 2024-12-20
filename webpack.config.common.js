@@ -20,7 +20,7 @@ module.exports = {
 		}),
 		new CopyPlugin({
 			patterns: [
-				{ from: path.resolve(__dirname, 'public/assets'), to: path.resolve(__dirname, 'dist/assets') },
+				{ from: path.resolve(__dirname, 'public/assets'), to: path.resolve(__dirname, 'docs/assets') },
 			],
 		}),
 		new MiniCssExtractPlugin(),
