@@ -8,7 +8,7 @@ module.exports = {
 	entry: './scripts/index.ts',
 	output: {
 		filename: '[name].[contenthash].js',
-		path: path.resolve(__dirname, 'dist'),
+		path: path.resolve(__dirname, 'docs'),
 		clean: true,
 	},
 	resolve: {
