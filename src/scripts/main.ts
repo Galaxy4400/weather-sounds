@@ -29,7 +29,7 @@ const itemClick = (item: HTMLElement) => {
 };
 
 const initVolume = () => {
-	document.querySelectorAll('.item').forEach(item => {
+	document.querySelectorAll('.item').forEach((item) => {
 		const audio = item.querySelector('.item__audio') as HTMLAudioElement;
 		const range = item.querySelector('.item__range') as HTMLInputElement;
 
