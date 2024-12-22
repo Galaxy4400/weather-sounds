@@ -1,11 +1,16 @@
 {
 	"compilerOptions": {
-		"outDir": "./dist/",
-		"noImplicitAny": true,
-		"module": "es6",
-		"target": "es5",
-		"jsx": "react-jsx",
+		"target": "ESNext",
+		"module": "ESNext",
+		"outDir": "./docs",
+		"rootDir": "./src",
+		"strict": true,
 		"allowJs": true,
-		"moduleResolution": "node"
-	}
+	},
+	"include": [
+		"src/**/*"
+	],
+	"exclude": [
+		"node_modules"
+	]
 }

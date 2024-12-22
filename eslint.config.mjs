@@ -1,33 +1,57 @@
 import globals from 'globals';
 import js from '@eslint/js';
+import tsParser from '@typescript-eslint/parser';
+import tseslint from '@typescript-eslint/eslint-plugin';
 import prettierConfig from 'eslint-config-prettier';
 import prettierPlugin from 'eslint-plugin-prettier';
-import tseslint from '@typescript-eslint/eslint-plugin';
-import tsParser from '@typescript-eslint/parser';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
+	// Общая конфигурация
 	{
-		files: ['src/**/*.{js,jsx,ts,tsx}'],
 		languageOptions: {
-			parser: tsParser,
 			parserOptions: {
-				ecmaVersion: 2020,
+				ecmaVersion: 'latest',
 				sourceType: 'module',
-				project: './tsconfig.json',
+				ecmaFeatures: {
+					impliedStrict: true,
+				},
 			},
-			globals: globals.browser,
+			globals: {
+				...globals.browser,
+			},
 		},
 		plugins: {
 			prettier: prettierPlugin,
 		},
 		rules: {
-			...js.configs.recommended.rules,
-			...tseslint.configs.recommended.rules,
-			'no-unused-vars': 'warn',
-			'no-undef': 'error',
+			...prettierConfig.rules,
 			'prettier/prettier': 'error',
 		},
 	},
-	prettierConfig,
+
+	// Конфигурация для JS файлов
+	{
+		files: ['**/*.{js,jsx}'],
+		languageOptions: {
+			parser: js.parser,
+		},
+		rules: {
+			...js.configs.recommended.rules,
+		},
+	},
+
+	// Конфигурация для TS файлов
+	{
+		files: ['**/*.{ts,tsx}'],
+		languageOptions: {
+			parser: tsParser,
+		},
+		plugins: {
+			'@typescript-eslint': tseslint,
+		},
+		rules: {
+			...tseslint.configs.recommended.rules,
+		},
+	},
 ];
