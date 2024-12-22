@@ -37,6 +37,7 @@ export const weather = {
 				}
 
 				this.enableItem(i);
+				this.currentActiveIndex = i;
 			});
 		});
 	},
@@ -45,7 +46,6 @@ export const weather = {
 		this.items[i].classList.add(this.activeClass);
 		this.images[i].classList.add(this.activeClass);
 		this.audios[i].play();
-		this.currentActiveIndex = i;
 	},
 
 	disableItem(i: number) {
