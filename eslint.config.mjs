@@ -32,7 +32,7 @@ export default [
 
 	// Конфигурация для JS файлов
 	{
-		files: ['**/*.{js,jsx}'],
+		files: ['src/**/*.{js,jsx}'],
 		languageOptions: {
 			parser: js.parser,
 		},
@@ -43,7 +43,7 @@ export default [
 
 	// Конфигурация для TS файлов
 	{
-		files: ['**/*.{ts,tsx}'],
+		files: ['src/**/*.{ts,tsx}'],
 		languageOptions: {
 			parser: tsParser,
 		},

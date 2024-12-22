@@ -1,53 +1,56 @@
-const processAudio = (item: HTMLElement) => {
-	const audio = item.closest('.item')?.querySelector('.item__audio') as HTMLAudioElement;
+export const weather = {
+	activeClass: 'active',
+	initVolumeValue: 50,
+	currentActiveIndex: null as null | number,
+	items: document.querySelectorAll('.item') as NodeListOf<HTMLElement>,
+	views: document.querySelectorAll('.item__view') as NodeListOf<HTMLElement>,
+	audios: document.querySelectorAll('.item__audio') as NodeListOf<HTMLAudioElement>,
+	ranges: document.querySelectorAll('.item__range') as NodeListOf<HTMLFormElement>,
+	images: document.querySelectorAll('.main__img') as NodeListOf<HTMLImageElement>,
 
-	if (item.closest('.item')?.classList.contains('active')) {
-		audio.play();
-	} else {
-		audio.pause();
-	}
-};
+	init() {
+		this.initVolume();
+		this.initItemClick();
+	},
 
-const disactiveOthers = (currentItem: HTMLElement) => {
-	(document.querySelectorAll('.item__view') as NodeListOf<HTMLElement>).forEach((item) => {
-		if (currentItem === item) return;
+	initVolume() {
+		this.ranges.forEach((range, i) => {
+			range.value = this.initVolumeValue;
+			this.audios[i].volume = range.value / 100;
 
-		item.closest('.item')?.classList.remove('active');
-		document.querySelector(`[data-bg="${item.dataset.no}"]`)?.classList.remove('active');
-
-		processAudio(item);
-	});
-};
-
-const itemClick = (item: HTMLElement) => {
-	item.closest('.item')?.classList.toggle('active');
-	document.querySelector(`[data-bg="${item.dataset.no}"]`)?.classList.toggle('active');
-
-	processAudio(item);
-
-	disactiveOthers(item);
-};
-
-const initVolume = () => {
-	document.querySelectorAll('.item').forEach((item) => {
-		const audio = item.querySelector('.item__audio') as HTMLAudioElement;
-		const range = item.querySelector('.item__range') as HTMLInputElement;
-
-		range.value = '50';
-		audio.volume = +range.value / 100;
-
-		range.addEventListener('input', () => {
-			audio.volume = +range.value / 100;
+			range.addEventListener('input', () => {
+				this.audios[i].volume = range.value / 100;
+			});
 		});
-	});
-};
+	},
 
-export const initialize = () => {
-	initVolume();
+	initItemClick() {
+		this.views.forEach((view, i) => {
+			view.addEventListener('click', () => {
+				if (this.currentActiveIndex !== null || this.currentActiveIndex === i) {
+					this.disableItem(this.currentActiveIndex);
+				}
 
-	document.querySelector('.items')?.addEventListener('click', (e) => {
-		const itemView = (e.target as HTMLElement).closest('.item__view') as HTMLElement;
+				if (this.currentActiveIndex === i) {
+					this.currentActiveIndex = null;
+					return;
+				}
 
-		if (itemView) itemClick(itemView);
-	});
+				this.enableItem(i);
+			});
+		});
+	},
+
+	enableItem(i: number) {
+		this.items[i].classList.add(this.activeClass);
+		this.images[i].classList.add(this.activeClass);
+		this.audios[i].play();
+		this.currentActiveIndex = i;
+	},
+
+	disableItem(i: number) {
+		this.items[i].classList.remove(this.activeClass);
+		this.images[i].classList.remove(this.activeClass);
+		this.audios[i].pause();
+	},
 };

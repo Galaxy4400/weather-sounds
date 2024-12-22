@@ -8,5 +8,5 @@ module.exports = merge(commonConfig, {
 		port: 3000,
 		hot: true,
 		open: true,
-	}
+	},
 });
