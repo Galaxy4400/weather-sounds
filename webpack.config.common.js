@@ -56,6 +56,20 @@ module.exports = {
 				use: 'ts-loader',
 				exclude: /node_modules/,
 			},
+			{
+				test: /\.svg$/i,
+				type: 'asset/resource',
+				generator: {
+					filename: 'assets/icons/[name][ext]',
+				},
+			},
+			{
+				test: /\.mp3$/i,
+				type: 'asset/resource',
+				generator: {
+					filename: 'assets/sounds/[name][ext]',
+				},
+			},
 		],
 	},
 };
