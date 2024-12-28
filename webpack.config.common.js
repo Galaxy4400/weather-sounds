@@ -18,11 +18,6 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, 'public/index.html'),
 		}),
-		new CopyPlugin({
-			patterns: [
-				{ from: path.resolve(__dirname, 'public/assets'), to: path.resolve(__dirname, 'docs/assets') },
-			],
-		}),
 		new MiniCssExtractPlugin(),
 	],
 	module: {
@@ -57,18 +52,12 @@ module.exports = {
 				exclude: /node_modules/,
 			},
 			{
-				test: /\.svg$/i,
+				test: /\.(png|jpg|jpeg|gif|svg)$/i,
 				type: 'asset/resource',
-				generator: {
-					filename: 'assets/icons/[name][ext]',
-				},
 			},
 			{
 				test: /\.mp3$/i,
 				type: 'asset/resource',
-				generator: {
-					filename: 'assets/sounds/[name][ext]',
-				},
 			},
 		],
 	},
