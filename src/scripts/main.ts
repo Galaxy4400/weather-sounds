@@ -7,13 +7,23 @@ export const weather = {
 	bgs: [] as HTMLElement[],
 	itemsContainer: document.querySelector('.items') as HTMLElement,
 	backgroundsContainer: document.querySelector('.main__bg') as HTMLElement,
-	gange: document.querySelector('.range') as HTMLInputElement,
+	range: document.querySelector('.range') as HTMLInputElement,
 	currentActiveIndex: null as number | null,
+	audio: new Audio(),
 
 	init() {
 		this.renderItems();
 		this.reunderBackgrounds();
 		this.initItemClick();
+		this.initAudio();
+	},
+
+	initAudio() {
+		this.audio.volume = this.initVolumeValue / 100;
+
+		this.range.addEventListener('input', () => {
+			this.audio.volume = +this.range.value / 100;
+		});
 	},
 
 	renderItems() {
@@ -55,7 +65,6 @@ export const weather = {
 	initItemClick() {
 		this.items.forEach((item, i) => {
 			item.addEventListener('click', () => {
-				console.log('test');
 				if (this.currentActiveIndex !== null || this.currentActiveIndex === i) {
 					this.disableItem(this.currentActiveIndex);
 				}
@@ -74,11 +83,14 @@ export const weather = {
 	enableItem(i: number) {
 		this.items[i].classList.add(this.activeClass);
 		this.bgs[i].classList.add(this.activeClass);
+		this.audio.src = data[i].sound;
+		this.audio.play();
 	},
 
 	disableItem(i: number) {
 		this.items[i].classList.remove(this.activeClass);
 		this.bgs[i].classList.remove(this.activeClass);
+		this.audio.pause();
 	},
 };
 
